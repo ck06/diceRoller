@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "71e7f67f-b3e0-4a2f-bb8e-fc7aa1f13749",
+		"name": "DiceRoller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21889067"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"API\",\n    \"password\": \"API\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/login_check",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"login_check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roll (default)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/stats/roll",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"roll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roll (specific)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/stats/roll/2d20kh1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"roll",
+						"2d20kh1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Standard Array",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/stats/array",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"array"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
